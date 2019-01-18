@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import com.shyamslab.on_timecalendernotification.calender.CalenderHandler
 import kotlin.math.log
 
 class EventReminderReceiver: BroadcastReceiver() {
+    val LOG_TAG = "EventReminderReceiver";
 
     override  fun onReceive(context: Context?, intent: Intent?) {
         if (context == null || intent == null) {
@@ -16,8 +18,7 @@ class EventReminderReceiver: BroadcastReceiver() {
         }
 
         Log.i(LOG_TAG,"Event reminder received, ${intent.data}, ${intent.action}");
+        CalenderHandler.handlereminder(context,intent);
     }
-    companion object {
-        private const val LOG_TAG = "EventReminderReceiver"
-    }
+
 }

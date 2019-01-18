@@ -1,5 +1,6 @@
 package com.shyamslab.on_timecalendernotification
 
+import android.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.SwitchCompat
@@ -24,5 +25,17 @@ class MainActivity : AppCompatActivity() {
 
 
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkpermission();
+    }
+
+    private fun checkpermission() {
+        val hasPermissions = PermissionsManager.hasAllPermissions(this)
+        if (!hasPermissions) {
+            PermissionsManager.requestPermissions(this)
+        }
     }
 }
